@@ -9,25 +9,17 @@ import javax.persistence.*;
  * Created by Pelumi.Oyefeso on 12-04-2020
  */
 @Entity
-@Table(name = "ITEM")
 @Getter
 @Setter
+@Table(name = "Items")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ITEMID")
     private Integer itemId;
-    @Column(name = "NAME")
     private String itemName;
-    private Double price;
+    private Double itemPrice;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORYID")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
-    @OneToOne(mappedBy = "item")
-    private CartItem cartItem;
-    @OneToOne(mappedBy = "item")
-    private UserOrderItem userOrderItem;
-    @OneToOne(mappedBy = "item")
-    private ReviewItem reviewItem;
 }
