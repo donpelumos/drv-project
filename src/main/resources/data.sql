@@ -100,9 +100,11 @@ insert into categories (category_name) values ('Laptops');
 -- populate item table
 -- -----------------------------------------------------
 insert into items (item_name, item_price, description, category_id) values ('Tesco Water', '2.50', 'Clean and clear', '1');
-insert into items (item_name, item_price, description, category_id) values ('coke', '3.50', 'Soft Drink', '1');
+insert into items (item_name, item_price, description, category_id) values ('Coke', '3.50', 'Soft Drink', '1');
+insert into items (item_name, item_price, description, category_id) values ('Heineken', '4.50', 'Champions League Drink', '2');
 insert into items (item_name, item_price, description, category_id) values ('Nestle Milo', '5.00', '900g pack', '3');
 insert into items (item_name, item_price, description, category_id) values ('Cadbury Bournvita', '5.70', '950g pack', '3');
+insert into items (item_name, item_price, description, category_id) values ('Samsung S10', '85.00', '4G Smart Phone', '10');
 
 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,10 +116,14 @@ insert into items (item_name, item_price, description, category_id) values ('Cad
 -- -----------------------------------------------------
 -- populate cart table
 -- -----------------------------------------------------
-insert into carts (user_id, cart_price) values(1,2970.50);
+insert into carts (user_id, cart_price) values(1,9.50);
+insert into carts (user_id, cart_price) values(3,23.00);
 
 
 -- -----------------------------------------------------
 -- populate cartitem table
 -- -----------------------------------------------------
-insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 1, 2, 297.50);
+insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 1, 1, 2.50);
+insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 2, 2, 3.50);
+insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 3, 4, 4.50);
+insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 4, 1, 5.00);
