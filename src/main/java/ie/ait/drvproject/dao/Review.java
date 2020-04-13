@@ -21,6 +21,6 @@ public class Review {
     private Date reviewDate;
     private Integer rating ;
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 }
