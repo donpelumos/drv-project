@@ -43,7 +43,7 @@ public class ItemController {
         return itemResponses;
     }
 
-    @GetMapping("all-items/search-phrase/{searchPhrase}")
+    @GetMapping("search-phrase/{searchPhrase}")
     public CustomPageableResponse<Item, ItemResponse> searchItems(@PathVariable("searchPhrase") String searchPhrase, Pageable pageable){
         return itemService.searchItems(searchPhrase, pageable);
         //return userService.searchUsers(searchPhrase, pageable);

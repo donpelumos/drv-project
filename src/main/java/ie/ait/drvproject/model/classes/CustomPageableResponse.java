@@ -14,12 +14,13 @@ import java.util.List;
 public class CustomPageableResponse<T, U> {
     private String sort;
     private int totalNumberOfElements;
-    private int requestedPageSize;
-    private int actualPageSize;
+    private int requestedCurrentPageSize;
+    private int actualCurrentPageSize;
     private int currentPage;
     private List<U> content;
     private boolean isFirstPage;
     private boolean isLastPage;
+    private int totalNumberOfPages;
 
     public CustomPageableResponse(){
 
@@ -29,23 +30,23 @@ public class CustomPageableResponse<T, U> {
         this.sort = items.getPageable().getSort().toString().replace(":",",");
         this.totalNumberOfElements = (int)items.getTotalElements();
         this.content = itemsWellFormatted;
-        this.requestedPageSize = items.getPageable().getPageSize();
-        this.actualPageSize = items.getContent().size();
+        this.requestedCurrentPageSize = items.getPageable().getPageSize();
+        this.actualCurrentPageSize = items.getContent().size();
         this.currentPage = items.getPageable().getPageNumber();
-        if(this.totalNumberOfElements < this.requestedPageSize){
+        if(this.totalNumberOfElements < this.requestedCurrentPageSize){
             this.isFirstPage = true;
             this.isLastPage = true;
         }
-        else if(((this.currentPage + 1) * requestedPageSize ) >= this.totalNumberOfElements){
+        else if(((this.currentPage + 1) * requestedCurrentPageSize) >= this.totalNumberOfElements){
             this.isLastPage = true;
         }
-        else if((this.actualPageSize + currentPage) <= this.requestedPageSize){
+        else if((this.actualCurrentPageSize + currentPage) <= this.requestedCurrentPageSize){
             this.isFirstPage = true;
         }
         else{
             this.isFirstPage = false;
             this.isLastPage = false;
         }
-
+        this.totalNumberOfPages = (int)Math.ceil(((double)this.totalNumberOfElements)/((double)this.requestedCurrentPageSize));
     }
 }
