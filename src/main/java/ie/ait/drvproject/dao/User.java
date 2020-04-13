@@ -32,4 +32,10 @@ public class User {
     private String email;
     @Enumerated(EnumType.ORDINAL)
     private Status status;
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+    @OneToMany(mappedBy = "user")
+    private List<CartItem> cartItems;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 }

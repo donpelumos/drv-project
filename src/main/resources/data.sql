@@ -112,6 +112,12 @@ insert into items (item_name, item_price, description, category_id) values ('Cad
 
 
 -- -----------------------------------------------------
+-- populate cart table
+-- -----------------------------------------------------
+insert into carts (user_id, cart_price) values(1,2970.50);
+
+
+-- -----------------------------------------------------
 -- populate cartitem table
 -- -----------------------------------------------------
-/*insert into cartitem (userid, itemid, quantity, price) values(1,1,2.50,2)*/
+insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 1, 2, 297.50);
