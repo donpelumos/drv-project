@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +24,18 @@ public class ItemService {
 
     public List<Item> getAllItems(){
         return itemRepository.findAll();
+    }
+
+    public Optional<Item> findItemById(Integer id){
+        return itemRepository.findById(id);
+    }
+
+    public Item saveNewItem(Item item){
+        return itemRepository.save(item);
+    }
+
+    public Item updateItem(Item item){
+        return itemRepository.save(item);
     }
 
     public CustomPageableResponse<Item, ItemResponse> searchItems(String searchPhrase, Pageable pageable){
@@ -55,6 +68,17 @@ public class ItemService {
         itemResponse.setItemPrice(item.getItemPrice());
         itemResponse.setItemCategoryId(item.getCategory().getCategoryId());
         return itemResponse;
+    }
+
+    public int deleteItem(Integer id) {
+        Optional<Item> item = itemRepository.findById(id);
+        if(item.isPresent()){
+            itemRepository.delete(item.get());
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 
 }

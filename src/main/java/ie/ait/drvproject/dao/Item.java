@@ -22,8 +22,4 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @OneToOne(mappedBy = "item")
-    private CartItem cartItem;
-    @OneToOne(mappedBy = "item")
-    private Stock stock;
 }

@@ -18,7 +18,8 @@
     background:white;
 }
 .right-div{
-    background:lightgrey;
+    background:white;
+    border-left: 1px solid black;
 }
 
 .custom-border{

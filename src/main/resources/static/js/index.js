@@ -1,4 +1,4 @@
-var BASE_URL = "http://localhost:8090";
+var BASE_URL = "http://localhost:8090/api";
 var fetchedItems = [];
 var PAGING_AND_SORTING_STRING = "?page=0&size=5&sort=itemName,asc";
 var CURRENT_SORT = "itemName,asc";
@@ -24,6 +24,7 @@ $(document).ready(function(){
     });
     $("#search-button").click(function(){
         CURRENT_SEARCH_QUERY = $("#search-box").val();
+        CURRENT_PAGE_NUMBER = 0;
         if(CURRENT_SEARCH_QUERY == null || CURRENT_SEARCH_QUERY == ""){
             CURRENT_SEARCH_QUERY = "%20";
         }
@@ -43,7 +44,7 @@ $(document).ready(function(){
 
 function fetchSearchedItems(){
     PAGING_AND_SORTING_STRING = "?page="+CURRENT_PAGE_NUMBER+"&size="+CURRENT_PAGE_SIZE+"&sort="+CURRENT_SORT;
-    var fullUrl = BASE_URL+"/items/search-phrase/"+CURRENT_SEARCH_QUERY+PAGING_AND_SORTING_STRING;
+    var fullUrl = BASE_URL+"/item/search-query/"+CURRENT_SEARCH_QUERY+PAGING_AND_SORTING_STRING;
     $.ajax({
         url: fullUrl,
         type: 'GET',
@@ -52,7 +53,7 @@ function fetchSearchedItems(){
             console.log(res);
             $("#search-result-selector").empty();
             $.each(res.content, function (index, storeItem) {
-                var optionString = "<option>"+ storeItem.itemName + " : " + storeItem.itemDescription + "</option>";
+                var optionString = `<option value="${storeItem.itemId}"> ${storeItem.itemName} : ${storeItem.itemDescription} </option>`;
                 $("#search-result-selector").append(optionString);
             });
             var pageCountEnd = parseInt(res.totalNumberOfPages);
@@ -85,27 +86,41 @@ function fetchSearchedItems(){
             document.getElementById("page-count").innerHTML = pageCountText;
         },
         error: function (jqXHR, status, err) {
-            alert("Local error callback.");
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+            //alert("Local error callback.");
         }
     });
 }
 
 function fetchAllStoreItems() {
     $.ajax({
-        url: BASE_URL+"/items/search-phrase/ "+PAGING_AND_SORTING_STRING,
+        url: BASE_URL+"/item/search-query/ "+PAGING_AND_SORTING_STRING,
         type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {
             console.log(res);
             $("#search-result-selector").empty();
             $.each(res.content, function (index, storeItem) {
-                var optionString = "<option>"+ storeItem.itemName + " : " + storeItem.itemDescription + "</option>";
+                var optionString = `<option value="${storeItem.itemId}"> ${storeItem.itemName} : ${storeItem.itemDescription} </option>`;
                 $("#search-result-selector").append(optionString);
             });
             //alert(res);
         },
         error: function (jqXHR, status, err) {
-            alert("Local error callback.");
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+            //alert("Local error callback.");
         }
     });
 }

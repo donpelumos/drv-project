@@ -18,6 +18,4 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
     private String categoryName;
-    @OneToMany(mappedBy = "category")
-    private Set<Item> items;
 }

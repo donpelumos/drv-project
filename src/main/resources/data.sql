@@ -138,3 +138,8 @@ insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 1, 1, 
 insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 2, 2, 3.50);
 insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 3, 4, 4.50);
 insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 4, 1, 5.00);
+
+
+insert into stock (item_id, quantity) values (1, 2.50);
+insert into stock (item_id, quantity) values (2, 3.50);
+insert into stock (item_id, quantity) values (3, 4.50);

@@ -15,7 +15,6 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer stockId;
-    private Double itemPrice;
     private Integer quantity;
     @OneToOne
     @JoinColumn(name = "item_id")

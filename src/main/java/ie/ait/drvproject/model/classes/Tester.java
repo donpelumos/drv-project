@@ -2,6 +2,7 @@ package ie.ait.drvproject.model.classes;
 
 import ie.ait.drvproject.dao.User;
 import ie.ait.drvproject.repository.*;
+import ie.ait.drvproject.service.ItemService;
 import ie.ait.drvproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,12 @@ import java.util.List;
 public class Tester implements CommandLineRunner{
     @Autowired
     UserService userService;
+
+    @Autowired
+    ItemService itemService;
+
+    @Autowired
+    StockRepository stockRepository;
 
     @Override
     public void run(String... args) throws Exception {
