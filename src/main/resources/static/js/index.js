@@ -38,6 +38,11 @@ $(document).ready(function(){
         CURRENT_PAGE_NUMBER--;
         fetchSearchedItems();
     });
+    $("#search-result-selector").change(function(){
+        var selectedItemId = $(this).children("option:selected").val();
+        fetchSelectedItemDetails(selectedItemId);
+
+    });
     //fetchAllStoreItems();
 
 });
@@ -121,6 +126,57 @@ function fetchAllStoreItems() {
                 alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
             }
             //alert("Local error callback.");
+        }
+    });
+}
+
+function fetchSelectedItemDetails(itemId){
+    $.ajax({
+        url: BASE_URL+"/item/"+itemId,
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            var fetchedItem = res;
+            $("#item-id").val(fetchedItem.itemId);
+            $("#item-name").val(fetchedItem.itemName);
+            $("#item-description").val(fetchedItem.description);
+            $("#item-category").val(fetchedItem.category.categoryId);
+            $("#item-price").val('€'+fetchedItem.itemPrice);
+            fetchSelectedItemQuantity(itemId);
+
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function fetchSelectedItemQuantity(itemId){
+    $.ajax({
+        url: BASE_URL+"/item/"+itemId+"/stock",
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            var fetchedItemStock = res;
+            $("#item-quantity").val(fetchedItemStock.quantity);
+
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
         }
     });
 }
