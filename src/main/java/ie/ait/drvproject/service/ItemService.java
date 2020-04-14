@@ -32,8 +32,15 @@ public class ItemService {
             List<ItemResponse> itemResponses = items.stream().map((item -> mapItemToItemResponse(item))).collect(Collectors.toList());
             return new CustomPageableResponse<>(foundItemsPage, itemResponses);
         }
-        Page<Item> foundItemsPage = itemRepository.findAllByItemNameOrItemNameContains(searchPhrase.toLowerCase(),
-                searchPhrase.toLowerCase(), pageable);
+        Page<Item> foundItemsPage = null;
+        if(pageable.getSort().toString().contains("description")){
+            foundItemsPage = itemRepository.findAllByDescriptionOrDescriptionContains(searchPhrase.toLowerCase(),
+                    searchPhrase.toLowerCase(), pageable);
+        }
+        else{
+            foundItemsPage = itemRepository.findAllByItemNameOrItemNameContains(searchPhrase.toLowerCase(),
+                    searchPhrase.toLowerCase(), pageable);
+        }
         List<Item> items = foundItemsPage.getContent();
         List<ItemResponse> itemResponses = items.stream().map((item -> mapItemToItemResponse(item))).collect(Collectors.toList());
         return new CustomPageableResponse<>(foundItemsPage, itemResponses);

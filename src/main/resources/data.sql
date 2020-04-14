@@ -105,6 +105,17 @@ insert into items (item_name, item_price, description, category_id) values ('Hei
 insert into items (item_name, item_price, description, category_id) values ('Nestle Milo', '5.00', '900g pack', '3');
 insert into items (item_name, item_price, description, category_id) values ('Cadbury Bournvita', '5.70', '950g pack', '3');
 insert into items (item_name, item_price, description, category_id) values ('Samsung S10', '85.00', '4G Smart Phone', '10');
+insert into items (item_name, item_price, description, category_id) values ('Iphone XS', '123.00', 'Super Phone', '10');
+insert into items (item_name, item_price, description, category_id) values ('Dell Inspiron', '1450.50', 'Gaming Laptop', '15');
+insert into items (item_name, item_price, description, category_id) values ('Emperio Armani', '38.00', 'Clean and Classy Suit for the elites', '14');
+insert into items (item_name, item_price, description, category_id) values ('Iwatch', '200.00', 'Smart watch', '13');
+insert into items (item_name, item_price, description, category_id) values ('Suavage', '26.20', 'Summer masculine perfume', '12');
+insert into items (item_name, item_price, description, category_id) values ('Air max S10', '115.00', 'Feel the pump', '7');
+insert into items (item_name, item_price, description, category_id) values ('Nike cap', '20.00', 'Retro snapback', '9');
+insert into items (item_name, item_price, description, category_id) values ('MacBook Air', '1221.99', 'Expensive laptop with not much specs', '15');
+insert into items (item_name, item_price, description, category_id) values ('Guinness', '8.00', 'Small stout', '2');
+insert into items (item_name, item_price, description, category_id) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', '13');
+
 
 
 -- ---------------------------------------------------------------------------------------------------------------------------------------------------
