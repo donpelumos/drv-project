@@ -71,75 +71,22 @@ insert into users ( username, gender, address, county, phone, email, status) val
 
 
 -- -----------------------------------------------------
--- populate category table
--- -----------------------------------------------------
-insert into categories (category_name) values ('Water and Drinks');
-insert into categories (category_name) values ('Alcohol');
-insert into categories (category_name) values ('Beverage');
-insert into categories (category_name) values ('Tea');
-insert into categories (category_name) values ('Shirt');
-insert into categories (category_name) values ('Bag');
-insert into categories (category_name) values ('Shoe');
-insert into categories (category_name) values ('Toiletry');
-insert into categories (category_name) values ('Caps and Hats');
-insert into categories (category_name) values ('Electronics');
-insert into categories (category_name) values ('Phones');
-insert into categories (category_name) values ('Perfumes');
-insert into categories (category_name) values ('Watches');
-insert into categories (category_name) values ('Suits');
-insert into categories (category_name) values ('Laptops');
-
-
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
--- -----------------------------------------------------
 -- populate item table
 -- -----------------------------------------------------
-insert into items (item_name, item_price, description, category_id) values ('Tesco Water', '2.50', 'Clean and clear', '1');
-insert into items (item_name, item_price, description, category_id) values ('Coke', '3.50', 'Soft Drink', '1');
-insert into items (item_name, item_price, description, category_id) values ('Heineken', '4.50', 'Champions League Drink', '2');
-insert into items (item_name, item_price, description, category_id) values ('Nestle Milo', '5.00', '900g pack', '3');
-insert into items (item_name, item_price, description, category_id) values ('Cadbury Bournvita', '5.70', '950g pack', '3');
-insert into items (item_name, item_price, description, category_id) values ('Samsung S10', '85.00', '4G Smart Phone', '10');
-insert into items (item_name, item_price, description, category_id) values ('Iphone XS', '123.00', 'Super Phone', '10');
-insert into items (item_name, item_price, description, category_id) values ('Dell Inspiron', '1450.50', 'Gaming Laptop', '15');
-insert into items (item_name, item_price, description, category_id) values ('Emperio Armani', '38.00', 'Clean and Classy Suit for the elites', '14');
-insert into items (item_name, item_price, description, category_id) values ('Iwatch', '200.00', 'Smart watch', '13');
-insert into items (item_name, item_price, description, category_id) values ('Suavage', '26.20', 'Summer masculine perfume', '12');
-insert into items (item_name, item_price, description, category_id) values ('Air max S10', '115.00', 'Feel the pump', '7');
-insert into items (item_name, item_price, description, category_id) values ('Nike cap', '20.00', 'Retro snapback', '9');
-insert into items (item_name, item_price, description, category_id) values ('MacBook Air', '1221.99', 'Expensive laptop with not much specs', '15');
-insert into items (item_name, item_price, description, category_id) values ('Guinness', '8.00', 'Small stout', '2');
-insert into items (item_name, item_price, description, category_id) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', '13');
+insert into items (item_name, item_price, description, quantity) values ('Tesco Water', '2.50', 'Clean and clear', 34);
+insert into items (item_name, item_price, description, quantity) values ('Coke', '3.50', 'Soft Drink', 23);
+insert into items (item_name, item_price, description, quantity) values ('Heineken', '4.50', 'Champions League Drink', 3);
+insert into items (item_name, item_price, description, quantity) values ('Nestle Milo', '5.00', '900g pack', 12);
+insert into items (item_name, item_price, description, quantity) values ('Cadbury Bournvita', '5.70', '950g pack', 35);
+insert into items (item_name, item_price, description, quantity) values ('Samsung S10', '85.00', '4G Smart Phone', 22);
+insert into items (item_name, item_price, description, quantity) values ('Iphone XS', '123.00', 'Super Phone', 15);
+insert into items (item_name, item_price, description, quantity) values ('Dell Inspiron', '1450.50', 'Gaming Laptop', 42);
+insert into items (item_name, item_price, description, quantity) values ('Emperio Armani', '38.00', 'Clean and Classy Suit for the elites', 44);
+insert into items (item_name, item_price, description, quantity) values ('Iwatch', '200.00', 'Smart watch', 50);
+insert into items (item_name, item_price, description, quantity) values ('Suavage', '26.20', 'Summer masculine perfume', 1);
+insert into items (item_name, item_price, description, quantity) values ('Air max S10', '115.00', 'Feel the pump', 7);
+insert into items (item_name, item_price, description, quantity) values ('Nike cap', '20.00', 'Retro snapback', 8);
+insert into items (item_name, item_price, description, quantity) values ('MacBook Air', '1221.99', 'Expensive laptop with not much specs', 4);
+insert into items (item_name, item_price, description, quantity) values ('Guinness', '8.00', 'Small stout', 38);
+insert into items (item_name, item_price, description, quantity) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', 24);
 
-
-
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
--- ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-
--- -----------------------------------------------------
--- populate cart table
--- -----------------------------------------------------
-insert into carts (user_id, cart_price) values(1,9.50);
-insert into carts (user_id, cart_price) values(3,23.00);
-
-
--- -----------------------------------------------------
--- populate cartitem table
--- -----------------------------------------------------
-insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 1, 1, 2.50);
-insert into cart_items (user_id, item_id, quantity, unit_price) values(1, 2, 2, 3.50);
-insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 3, 4, 4.50);
-insert into cart_items (user_id, item_id, quantity, unit_price) values(3, 4, 1, 5.00);
-
-
-insert into stock (item_id, quantity) values (1, 2.50);
-insert into stock (item_id, quantity) values (2, 3.50);
-insert into stock (item_id, quantity) values (3, 4.50);

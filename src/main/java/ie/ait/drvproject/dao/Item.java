@@ -19,7 +19,5 @@ public class Item {
     private String itemName;
     private Double itemPrice;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    private Integer quantity;
 }

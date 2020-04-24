@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Created by Pelumi.Oyefeso on 14-04-2020
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class StockNotFoundException extends RuntimeException {
-    public StockNotFoundException(String message) {
+public class ReviewNotFoundException extends RuntimeException {
+    public ReviewNotFoundException(String message) {
         super(message);
     }
 }

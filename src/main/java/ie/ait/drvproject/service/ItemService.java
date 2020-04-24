@@ -66,7 +66,6 @@ public class ItemService {
         itemResponse.setItemDescription(item.getDescription());
         itemResponse.setItemName(item.getItemName());
         itemResponse.setItemPrice(item.getItemPrice());
-        itemResponse.setItemCategoryId(item.getCategory().getCategoryId());
         return itemResponse;
     }
 

@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS STOCK;
-DROP TABLE IF EXISTS REVIEW_ITEMS;
 DROP TABLE IF EXISTS REVIEWS;
 DROP TABLE IF EXISTS EMAILS;
 DROP TABLE IF EXISTS ORDER_ITEMS;
@@ -7,7 +5,6 @@ DROP TABLE IF EXISTS ORDERS;
 DROP TABLE IF EXISTS CART_ITEMS;
 DROP TABLE IF EXISTS CARTS;
 DROP TABLE IF EXISTS ITEMS;
-DROP TABLE IF EXISTS CATEGORIES;
 DROP TABLE IF EXISTS USERS;
 
 
@@ -28,17 +25,6 @@ CREATE INDEX user_id_index ON USERS(USER_ID);
 
 
 -- -----------------------------------------------------
--- Table category
--- -----------------------------------------------------
-
-
-CREATE TABLE CATEGORIES (
-  CATEGORY_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  CATEGORY_NAME VARCHAR(45) NOT NULL
-);
-
-
--- -----------------------------------------------------
 -- Table item
 -- -----------------------------------------------------
 
@@ -47,14 +33,10 @@ CREATE TABLE ITEMS (
   ITEM_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ITEM_NAME VARCHAR(45) NOT NULL,
   ITEM_PRICE FLOAT NOT NULL,
-  DESCRIPTION VARCHAR(200) NOT NULL,
-  CATEGORY_ID INT NOT NULL,
-  CONSTRAINT CategoryIDFKCategory
-    FOREIGN KEY (CATEGORY_ID)
-    REFERENCES CATEGORIES (CATEGORY_ID)
+  QUANTITY INT NOT NULL,
+  DESCRIPTION VARCHAR(200) NOT NULL
 );
 CREATE INDEX item_id_idx ON ITEMS (ITEM_ID);
-CREATE INDEX category_id__idx ON ITEMS (CATEGORY_ID);
 
 
 -- -----------------------------------------------------
@@ -165,46 +147,9 @@ CREATE TABLE REVIEWS (
   REVIEW_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   REVIEW_TEXT VARCHAR(200) NULL DEFAULT NULL,
   REVIEW_DATE DATETIME(6) NOT NULL,
-  RATING BIT(10) NOT NULL,
   USER_ID INT NOT NULL,
   CONSTRAINT UserIDFKReview
     FOREIGN KEY (USER_ID)
     REFERENCES USERS (USER_ID)
 );
 CREATE INDEX user_id_review_idx ON REVIEWS (USER_ID);
-
-
--- -----------------------------------------------------
--- Table reviewitems
--- -----------------------------------------------------
-
-
-CREATE TABLE REVIEW_ITEMS (
-  REVIEW_ID INT NOT NULL,
-  ITEM_ID INT NOT NULL,
-  REVIEW_ITEM_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  CONSTRAINT ItemIDFKReviewItems
-    FOREIGN KEY (ITEM_ID)
-    REFERENCES ITEMS (ITEM_ID),
-  CONSTRAINT ReviewIDFKReviewItems
-    FOREIGN KEY (REVIEW_ID)
-    REFERENCES REVIEWS (REVIEW_ID)
-);
-CREATE INDEX item_id_review_items_idx ON REVIEW_ITEMS (ITEM_ID);
-CREATE INDEX review_id_review_items_idx ON REVIEW_ITEMS (REVIEW_ID);
-
-
--- -----------------------------------------------------
--- Table stock
--- -----------------------------------------------------
-
-
-CREATE TABLE STOCK (
-  QUANTITY INT NOT NULL,
-  STOCK_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ITEM_ID INT NOT NULL UNIQUE,
-  CONSTRAINT ItemIDFKItem
-    FOREIGN KEY (ITEM_ID)
-    REFERENCES ITEMS (ITEM_ID)
-);
-CREATE INDEX item_id_stock_idx ON STOCK (ITEM_ID);

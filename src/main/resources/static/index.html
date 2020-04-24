@@ -54,7 +54,7 @@
                     STORE ITEMS
                 </p>
                 <select id="search-result-selector" class="form-control custom-form-control" style="width:70%; font-size: 16px;" size="5">
-                    
+
                 </select>
                 <br>
                 <table style="width: 80%;">
@@ -75,12 +75,15 @@
                 <p style="font-size: 26px;">
                     STORE ITEM DETAILS
                 </p>
-                <table style="width:80%;">
+                <table style="width:90%;">
                     <tr >
                         <td style="margin-left: 5px; margin-right: 5px;">ID</td>
                         <td style="padding: 10px 0px 10px 0px;">
                             <input id="item-id" type="text" class="form-control custom-form-control"
                                    style="width:100%;font-size: 16px" disabled/>
+                        </td>
+                        <td>
+                            <button id="clear-item-id-button" style="margin-left: 20px;"> ENABLE </button>
                         </td>
                     </tr>
                     <tr>
@@ -89,6 +92,9 @@
                             <input id="item-name" type="text" class="form-control custom-form-control"
                                    style="width:100%;font-size: 16px" disabled/>
                         </td>
+                        <td>
+                            <!-- <button id="clear-item-name-button" style="margin-left: 20px;"> ENABLE </button> -->
+                        </td>
                     </tr>
                     <tr>
                         <td style="margin-left: 5px; margin-right: 5px;">DESCRIPTION</td>
@@ -96,26 +102,37 @@
                             <textarea class="form-control" id="item-description"
                                       style="height: 70px;font-size: 16px;resize: none;" disabled></textarea>
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="margin-left: 5px; margin-right: 5px;">CATEGORY</td>
-                        <td style="padding: 10px 0px 10px 0px;">
-                            <input id="item-category" type="text" class="form-control custom-form-control"
-                                   style="width:100%;font-size: 16px" disabled/>
+                        <td>
+                            <button id="clear-item-description-button" style="margin-left: 20px;"> ENABLE </button>
                         </td>
                     </tr>
                     <tr>
-                        <td style="margin-left: 5px; margin-right: 5px;">PRICE</td>
+                        <td style="margin-left: 5px; margin-right: 5px;">PRICE (€)</td>
                         <td style="padding: 10px 0px 10px 0px;">
                             <input id="item-price" type="text" class="form-control custom-form-control"
                                    style="width:100%;font-size: 16px" disabled/>
                         </td>
+                        <td>
+                            <button id="clear-item-price-button" style="margin-left: 20px;"> ENABLE </button>
+                        </td>
                     </tr>
                     <tr>
-                        <td style="margin-left: 5px; margin-right: 5px;">QUANTITY</td>
+                        <td style="margin-left: 5px; margin-right: 5px;">QUANTITY IN STOCK</td>
                         <td style="padding: 10px 0px 10px 0px;">
                             <input id="item-quantity" type="text" class="form-control custom-form-control"
                                    style="width:100%;font-size: 16px" disabled/>
+                        </td>
+                        <td>
+                            <button id="clear-item-quantity-button" style="margin-left: 20px;"> ENABLE </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-left: 5px; margin-right: 5px;"></td>
+                        <td style="padding: 10px 0px 10px 0px;">
+                            <button id="view-review-button" style="margin-left: 20px;"> VIEW REVIEWS </button>
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                 </table>

@@ -1,18 +1,12 @@
 package ie.ait.drvproject.controller;
 
 import ie.ait.drvproject.dao.Item;
-import ie.ait.drvproject.dao.Stock;
-import ie.ait.drvproject.dao.User;
 import ie.ait.drvproject.exception.ItemNotFoundException;
-import ie.ait.drvproject.exception.StockNotFoundException;
+import ie.ait.drvproject.exception.ReviewNotFoundException;
 import ie.ait.drvproject.model.classes.CustomPageableResponse;
 import ie.ait.drvproject.model.classes.ItemResponse;
-import ie.ait.drvproject.repository.UserRepository;
 import ie.ait.drvproject.service.ItemService;
-import ie.ait.drvproject.service.StockService;
-import ie.ait.drvproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +28,7 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-    @Autowired
-    StockService stockService;
-
-    @GetMapping(value = {"/", "/all"})
+    @GetMapping(value = {"", "/all"})
     public ResponseEntity<List<Item>> getAllItems(){
         return new ResponseEntity<>(itemService.getAllItems(), HttpStatus.OK);
     }
@@ -55,19 +45,7 @@ public class ItemController {
         }
     }
 
-    @GetMapping("{id}/stock")
-    public ResponseEntity<Stock> getItemStock(@PathVariable("id") Integer id){
-        Optional<Stock> stock = stockService.findStockByItemId(id);
-        if(stock.isPresent()){
-            ResponseEntity<Stock> stockResponseEntity = new ResponseEntity<>(stock.get(), HttpStatus.OK);
-            return stockResponseEntity;
-        }
-        else{
-            throw new StockNotFoundException("No stock information found for requested store item");
-        }
-    }
-
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Item> createItem(@Valid @RequestBody Item item){
         Item createdItem = itemService.saveNewItem(item);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -80,8 +58,9 @@ public class ItemController {
         return itemService.searchItems(searchPhrase, pageable);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Item> updateItem(@Valid @RequestBody Item itemToUpdate, @PathVariable("id") Integer id){
+    @PutMapping(value = {"", "{id}"})
+    public ResponseEntity<Item> updateItem(@Valid @RequestBody Item itemToUpdate, @PathVariable(value = "id", required = false) Integer id){
+        id = (id == null) ? itemToUpdate.getItemId() : id;
         Optional<Item> item = itemService.findItemById(id);
         if(item.isPresent()){
             itemToUpdate.setItemId(id);

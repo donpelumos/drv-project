@@ -21,9 +21,6 @@ public class Tester implements CommandLineRunner{
     @Autowired
     ItemService itemService;
 
-    @Autowired
-    StockRepository stockRepository;
-
     @Override
     public void run(String... args) throws Exception {
         /*

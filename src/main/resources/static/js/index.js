@@ -43,6 +43,34 @@ $(document).ready(function(){
         fetchSelectedItemDetails(selectedItemId);
 
     });
+    $("#clear-item-id-button").click(function(){
+        $("#item-id").val(null);
+        $("#item-id").prop('disabled', false);
+    });
+    $("#clear-item-name-button").click(function(){
+        $("#item-name").val(null);
+        $("#item-name").prop('disabled', false);
+    });
+    $("#clear-item-description-button").click(function(){
+        $("#item-description").val(null);
+        $("#item-description").prop('disabled', false);
+    });
+    $("#clear-item-quantity-button").click(function(){
+        $("#item-quantity").val(null);
+        $("#item-quantity").prop('disabled', false);
+    });
+    $("#clear-item-price-button").click(function(){
+        $("#item-price").val(null);
+        $("#item-price").prop('disabled', false);
+    });
+
+    $('#create-button').click(function(){
+        var itemName = $("#item-name").val();
+        var itemDescription = $("#item-description").val();
+        var itemPrice = $("#item-price").val();
+        var itemQuantity = $("#item-quantity").val();
+        //var itemToBeCreated = {"itemName": itemName, "itemPrice": itemPrice, "itemCategory"};
+    });
     //fetchAllStoreItems();
 
 });
@@ -85,7 +113,6 @@ function fetchSearchedItems(){
             if(pageCountEnd == 0){
                 $("#prev-button").css({"visibility":"hidden"});
                 $("#next-button").css({"visibility":"hidden"});
-                $("#prev-button").css({"visibility":"hidden"});
                 $("#page-count").css({"visibility":"hidden"});
             }
             document.getElementById("page-count").innerHTML = pageCountText;
@@ -141,32 +168,8 @@ function fetchSelectedItemDetails(itemId){
             $("#item-id").val(fetchedItem.itemId);
             $("#item-name").val(fetchedItem.itemName);
             $("#item-description").val(fetchedItem.description);
-            $("#item-category").val(fetchedItem.category.categoryId);
-            $("#item-price").val('€'+fetchedItem.itemPrice);
-            fetchSelectedItemQuantity(itemId);
-
-        },
-        error: function (jqXHR, status, err) {
-            if(jqXHR.responseJSON == null){
-                alert("Unable to connect to service.")
-            }
-            else {
-                var errorResponse = jqXHR.responseJSON;
-                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
-            }
-        }
-    });
-}
-
-function fetchSelectedItemQuantity(itemId){
-    $.ajax({
-        url: BASE_URL+"/item/"+itemId+"/stock",
-        type: 'GET',
-        dataType: 'json', // added data type
-        success: function(res) {
-            console.log(res);
-            var fetchedItemStock = res;
-            $("#item-quantity").val(fetchedItemStock.quantity);
+            $("#item-quantity").val(fetchedItem.quantity);
+            $("#item-price").val(+fetchedItem.itemPrice);
 
         },
         error: function (jqXHR, status, err) {

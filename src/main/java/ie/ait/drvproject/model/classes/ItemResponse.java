@@ -15,5 +15,4 @@ public class ItemResponse {
     private String itemName;
     private String itemDescription;
     private Double itemPrice;
-    private Integer itemCategoryId;
 }
