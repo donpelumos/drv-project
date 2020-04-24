@@ -69,8 +69,18 @@ $(document).ready(function(){
         var itemDescription = $("#item-description").val();
         var itemPrice = $("#item-price").val();
         var itemQuantity = $("#item-quantity").val();
-        var itemToBeCreated = {"itemName": itemName, "itemPrice": itemPrice, "itemDescription": itemDescription, "itemQuantity": itemQuantity};
+        var itemToBeCreated = {itemName: itemName, itemPrice: itemPrice, itemDescription: itemDescription, itemQuantity: itemQuantity};
         createNewItem(itemToBeCreated);
+    });
+
+    $('#update-button').click(function(){
+        var itemId = $("#item-id").val();
+        var itemName = $("#item-name").val();
+        var itemDescription = $("#item-description").val();
+        var itemPrice = $("#item-price").val();
+        var itemQuantity = $("#item-quantity").val();
+        var itemToBeUpdated = {itemId: itemId,itemName: itemName, itemPrice: itemPrice, itemDescription: itemDescription, itemQuantity: itemQuantity};
+        updateExistingItem(itemToBeUpdated);
     });
     //fetchAllStoreItems();
 
@@ -201,6 +211,34 @@ function createNewItem(item){
             $("#item-price").prop('disabled', true);
             $("#item-quantity").prop('disabled', true);
             alert("ITEM SUCCESSFULLY CREATED");
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function updateExistingItem(item){
+    item = JSON.stringify(item);
+    $.ajax({
+        url: BASE_URL+"/item",
+        type: 'PUT',
+        contentType: "application/json; charset=utf-8",
+        data:item,
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            $("#item-name").prop('disabled', true);
+            $("#item-description").prop('disabled', true);
+            $("#item-price").prop('disabled', true);
+            $("#item-quantity").prop('disabled', true);
+            alert("ITEM SUCCESSFULLY UPDATED");
         },
         error: function (jqXHR, status, err) {
             if(jqXHR.responseJSON == null){

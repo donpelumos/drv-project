@@ -45,7 +45,7 @@ public class ItemService {
             return new CustomPageableResponse<>(foundItemsPage, itemResponses);
         }
         Page<Item> foundItemsPage = null;
-        if(pageable.getSort().toString().contains("description")){
+        if(pageable.getSort().toString().toLowerCase().contains("description")){
             foundItemsPage = itemRepository.findAllByItemDescriptionOrItemDescriptionContains(searchPhrase.toLowerCase(),
                     searchPhrase.toLowerCase(), pageable);
         }
