@@ -13,6 +13,8 @@ import java.util.List;
 @Setter
 public class ReviewResponse {
     private Integer reviewId;
+    private Integer userId;
+    private Integer itemId;
     private String reviewsText;
     private Date reviewDate;
 }
