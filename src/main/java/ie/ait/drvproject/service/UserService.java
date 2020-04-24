@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Pelumi.Oyefeso on 12-04-2020
@@ -25,13 +26,26 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Page<User> searchUsers(String searchPhrase, Pageable pageable){
-        if(searchPhrase.trim().isEmpty()){
-            Page<User> foundUsersPage = userRepository.findAll(pageable);
-            return foundUsersPage;
+    public Optional<User> findUserById(Integer id){
+        return userRepository.findById(id);
+    }
+
+    public User saveNewUser(User item){
+        return userRepository.save(item);
+    }
+
+    public User updateUser(User item){
+        return userRepository.save(item);
+    }
+
+    public int deleteUser(Integer id) {
+        Optional<User> item = userRepository.findById(id);
+        if(item.isPresent()){
+            userRepository.delete(item.get());
+            return 0;
         }
-        Page<User> foundUsersPage = userRepository.findAllByUsernameOrUsernameContains(searchPhrase.toLowerCase(),
-                searchPhrase.toLowerCase(), pageable);
-        return foundUsersPage;
+        else{
+            return -1;
+        }
     }
 }

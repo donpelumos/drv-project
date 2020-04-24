@@ -90,3 +90,13 @@ insert into items (item_name, item_price, item_description, item_quantity) value
 insert into items (item_name, item_price, item_description, item_quantity) values ('Guinness', '8.00', 'Small stout', 38);
 insert into items (item_name, item_price, item_description, item_quantity) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', 24);
 
+
+
+-- -----------------------------------------------------
+-- populate review table
+-- -----------------------------------------------------
+insert into reviews(review_text, review_date, user_id, item_id) values('hwydydy seweduwwdew qudwedewhdwqewejejr rjuhr uhue ehyeygf ge','2020-04-24 12:33:22',2,12);
+insert into reviews(review_text, review_date, user_id, item_id) values('dse jugyftf gctt ge','2020-04-24 13:22:22',2,12);
+insert into reviews(review_text, review_date, user_id, item_id) values('hwydydy seweduwwdew qudwedewhdwqewejejr rjuhr uhue ehyeygf ge','2020-04-24 14:20:22',3,12);
+insert into reviews(review_text, review_date, user_id, item_id) values('hwydydy seweduwwdew qudwedewhdwqewejejr rjuhr uhue ehyeygf ge','2020-04-24 15:15:22',7,12);
+insert into reviews(review_text, review_date, user_id, item_id) values('hwydydy seweduwwdew qudwedewhdwqewejejr rjuhr uhue ehyeygf ge','2020-04-24 13:10:22',9,12);

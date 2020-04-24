@@ -46,7 +46,7 @@ public class ReviewController {
         Review createdReview = reviewService.saveNewReview(review);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(createdReview.getReviewId()).toUri();
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(createdReview);
     }
 
     @PutMapping(value = {"", "{id}"})

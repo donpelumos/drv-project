@@ -1,11 +1,13 @@
 package ie.ait.drvproject.controller;
 
 import ie.ait.drvproject.dao.Item;
+import ie.ait.drvproject.dao.Review;
 import ie.ait.drvproject.exception.ItemNotFoundException;
 import ie.ait.drvproject.exception.ReviewNotFoundException;
 import ie.ait.drvproject.model.classes.CustomPageableResponse;
 import ie.ait.drvproject.model.classes.ItemResponse;
 import ie.ait.drvproject.service.ItemService;
+import ie.ait.drvproject.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,14 @@ public class ItemController {
 
     @Autowired
     ItemService itemService;
+
+    @Autowired
+    ReviewService reviewService;
+
+    @GetMapping("{id}/reviews")
+    public ResponseEntity<List<Review>> getItemReviews(@PathVariable("id") Integer itemId){
+        return new ResponseEntity<>(reviewService.getItemReviews(itemId), HttpStatus.OK);
+    }
 
     @GetMapping(value = {"", "/all"})
     public ResponseEntity<List<Item>> getAllItems(){

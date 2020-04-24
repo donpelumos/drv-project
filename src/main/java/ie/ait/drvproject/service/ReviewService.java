@@ -21,6 +21,10 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
+    public List<Review> getItemReviews(Integer itemId){
+        return reviewRepository.findAllByItemItemIdOrderByReviewDateDesc(itemId);
+    }
+
     public Optional<Review> findReviewById(Integer id){
         return reviewRepository.findById(id);
     }

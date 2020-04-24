@@ -82,6 +82,38 @@ $(document).ready(function(){
         var itemToBeUpdated = {itemId: itemId,itemName: itemName, itemPrice: itemPrice, itemDescription: itemDescription, itemQuantity: itemQuantity};
         updateExistingItem(itemToBeUpdated);
     });
+
+    $("#view-review-button").click(function(){
+        var currentItemName = $("#item-name").val();
+        var currentItemId = $("#item-id").val();
+        if(currentItemId == null || currentItemId == undefined|| currentItemId == ""){
+            alert("NO ITEM ID VALUE");
+        }
+        else {
+            $("#modal-item-name").html(currentItemName);
+            fetchAllUsers();
+            fetchItemReviews(parseInt(currentItemId));
+        }
+    });
+
+    $("#create-review-button").click(function(){
+        var currentItemId = parseInt($("#item-id").val());
+        var currentUserId = parseInt($("#new-review-user").val());
+        var reviewText = $("#review-text").val();
+        var d = new Date();
+        var reviewDate = d.getFullYear() + "-" + ("00" + (d.getMonth() + 1)).slice(-2) + "-" + ("00" + d.getDate()).slice(-2) + " "
+            + ("00" + d.getHours()).slice(-2) + ":" + ("00" + d.getMinutes()).slice(-2) + ":" + ("00" + d.getSeconds()).slice(-2);
+        var reviewToBeCreated = {reviewText: reviewText, reviewDate: reviewDate, user: {userId: currentUserId}, item: {itemId: currentItemId}};
+        createNewReview(reviewToBeCreated);
+    });
+
+    $(document).on("click",".delete-review-button", function (event) {
+        if (confirm('Are you sure you want to delete this review?')) {
+            var reviewId = parseInt(event.target.dataset.id);
+            var itemId = parseInt(event.target.dataset.itemId);
+            deleteReview(reviewId, itemId);
+        }
+    });
     //fetchAllStoreItems();
 
 });
@@ -94,7 +126,7 @@ function fetchSearchedItems(){
         type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {
-            console.log(res);
+            //console.log(res);
             $("#search-result-selector").empty();
             $.each(res.content, function (index, storeItem) {
                 var optionString = `<option value="${storeItem.itemId}"> ${storeItem.itemName} : ${storeItem.itemDescription} </option>`;
@@ -147,7 +179,7 @@ function fetchAllStoreItems() {
         type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {
-            console.log(res);
+            //console.log(res);
             $("#search-result-selector").empty();
             $.each(res.content, function (index, storeItem) {
                 var optionString = `<option value="${storeItem.itemId}"> ${storeItem.itemName} : ${storeItem.itemDescription} </option>`;
@@ -174,7 +206,7 @@ function fetchSelectedItemDetails(itemId){
         type: 'GET',
         dataType: 'json', // added data type
         success: function(res) {
-            console.log(res);
+            //console.log(res);
             var fetchedItem = res;
             $("#item-id").val(fetchedItem.itemId);
             $("#item-name").val(fetchedItem.itemName);
@@ -204,7 +236,7 @@ function createNewItem(item){
         data:item,
         dataType: 'json', // added data type
         success: function(res) {
-            console.log(res);
+            //console.log(res);
             $('#item-id').val(res.itemId);
             $("#item-name").prop('disabled', true);
             $("#item-description").prop('disabled', true);
@@ -233,12 +265,122 @@ function updateExistingItem(item){
         data:item,
         dataType: 'json', // added data type
         success: function(res) {
-            console.log(res);
+            //console.log(res);
             $("#item-name").prop('disabled', true);
             $("#item-description").prop('disabled', true);
             $("#item-price").prop('disabled', true);
             $("#item-quantity").prop('disabled', true);
             alert("ITEM SUCCESSFULLY UPDATED");
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function fetchAllUsers() {
+    $.ajax({
+        url: BASE_URL+"/user",
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            //console.log(res);
+            $("#new-review-user").empty();
+            $.each(res, function (index, user) {
+                var optionString = `<option value="${user.userId}"> ${user.username} - ${user.email} - ${user.county} </option>`;
+                $("#new-review-user").append(optionString);
+            });
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function createNewReview(review){
+    review = JSON.stringify(review);
+    $.ajax({
+        url: BASE_URL+"/review",
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        data:review,
+        dataType: 'json', // added data type
+        success: function(res) {
+            //console.log(res);
+            fetchItemReviews(res.item.itemId);
+            $("#review-text").val("");
+            alert("REVIEW SUCCESSFULLY CREATED");
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function fetchItemReviews(itemId) {
+    $.ajax({
+        url: BASE_URL+"/item/"+itemId+"/reviews",
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function(res) {
+            //console.log(res);
+            $("#reviews-case").empty();
+            $.each(res, function (index, review) {
+                var reviewDivString = `
+                                <div>
+                                    <div style="text-align: right">
+                                        <button class="delete-review-button" data-id="${review.reviewId}" data-item-id="${itemId}" type="button">Delete</button>
+                                    </div>
+                                    <P>
+                                        ${review.reviewText}
+                                    </P>
+                                    <p style="text-align: right">
+                                        ${review.user.username} - ${review.reviewDate}
+                                    </p>
+                                    <div style="border-top: 1px solid #dee2e6; clear: both; margin-top: 5px;height:20px;"></div>
+                                </div>`;
+                $("#reviews-case").append(reviewDivString);
+            });
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function deleteReview(reviewId, itemId) {
+    $.ajax({
+        url: BASE_URL+"/review/"+reviewId,
+        type: 'DELETE',
+        dataType: 'json', // added data type
+        success: function(res) {
+            //console.log(res);
+            alert("REVIEW DELETED SUCCESSFULLY");
+            fetchItemReviews(itemId);
         },
         error: function (jqXHR, status, err) {
             if(jqXHR.responseJSON == null){
