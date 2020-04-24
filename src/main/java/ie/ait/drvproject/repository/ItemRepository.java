@@ -15,5 +15,5 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
     Page<Item> findAllByItemNameOrItemNameContains(String itemName, String itemPartName, Pageable pageable);
 
-    Page<Item> findAllByDescriptionOrDescriptionContains(String description, String partDescription, Pageable pageable);
+    Page<Item> findAllByItemDescriptionOrItemDescriptionContains(String description, String partDescription, Pageable pageable);
 }

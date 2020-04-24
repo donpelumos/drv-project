@@ -50,7 +50,7 @@ public class ItemController {
         Item createdItem = itemService.saveNewItem(item);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(createdItem.getItemId()).toUri();
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(createdItem);
     }
 
     @GetMapping("search-query/{searchQuery}")

@@ -18,6 +18,6 @@ public class Item {
     private Integer itemId;
     private String itemName;
     private Double itemPrice;
-    private String description;
-    private Integer quantity;
+    private String itemDescription;
+    private Integer itemQuantity;
 }

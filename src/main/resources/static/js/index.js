@@ -69,7 +69,8 @@ $(document).ready(function(){
         var itemDescription = $("#item-description").val();
         var itemPrice = $("#item-price").val();
         var itemQuantity = $("#item-quantity").val();
-        //var itemToBeCreated = {"itemName": itemName, "itemPrice": itemPrice, "itemCategory"};
+        var itemToBeCreated = {"itemName": itemName, "itemPrice": itemPrice, "itemDescription": itemDescription, "itemQuantity": itemQuantity};
+        createNewItem(itemToBeCreated);
     });
     //fetchAllStoreItems();
 
@@ -167,10 +168,39 @@ function fetchSelectedItemDetails(itemId){
             var fetchedItem = res;
             $("#item-id").val(fetchedItem.itemId);
             $("#item-name").val(fetchedItem.itemName);
-            $("#item-description").val(fetchedItem.description);
-            $("#item-quantity").val(fetchedItem.quantity);
+            $("#item-description").val(fetchedItem.itemDescription);
+            $("#item-quantity").val(fetchedItem.itemQuantity);
             $("#item-price").val(+fetchedItem.itemPrice);
 
+        },
+        error: function (jqXHR, status, err) {
+            if(jqXHR.responseJSON == null){
+                alert("Unable to connect to service.")
+            }
+            else {
+                var errorResponse = jqXHR.responseJSON;
+                alert("ERROR : " + errorResponse.error + ". MESSAGE : " + errorResponse.message);
+            }
+        }
+    });
+}
+
+function createNewItem(item){
+    item = JSON.stringify(item);
+    $.ajax({
+        url: BASE_URL+"/item",
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        data:item,
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            $('#item-id').val(res.itemId);
+            $("#item-name").prop('disabled', true);
+            $("#item-description").prop('disabled', true);
+            $("#item-price").prop('disabled', true);
+            $("#item-quantity").prop('disabled', true);
+            alert("ITEM SUCCESSFULLY CREATED");
         },
         error: function (jqXHR, status, err) {
             if(jqXHR.responseJSON == null){

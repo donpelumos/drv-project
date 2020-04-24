@@ -73,20 +73,20 @@ insert into users ( username, gender, address, county, phone, email, status) val
 -- -----------------------------------------------------
 -- populate item table
 -- -----------------------------------------------------
-insert into items (item_name, item_price, description, quantity) values ('Tesco Water', '2.50', 'Clean and clear', 34);
-insert into items (item_name, item_price, description, quantity) values ('Coke', '3.50', 'Soft Drink', 23);
-insert into items (item_name, item_price, description, quantity) values ('Heineken', '4.50', 'Champions League Drink', 3);
-insert into items (item_name, item_price, description, quantity) values ('Nestle Milo', '5.00', '900g pack', 12);
-insert into items (item_name, item_price, description, quantity) values ('Cadbury Bournvita', '5.70', '950g pack', 35);
-insert into items (item_name, item_price, description, quantity) values ('Samsung S10', '85.00', '4G Smart Phone', 22);
-insert into items (item_name, item_price, description, quantity) values ('Iphone XS', '123.00', 'Super Phone', 15);
-insert into items (item_name, item_price, description, quantity) values ('Dell Inspiron', '1450.50', 'Gaming Laptop', 42);
-insert into items (item_name, item_price, description, quantity) values ('Emperio Armani', '38.00', 'Clean and Classy Suit for the elites', 44);
-insert into items (item_name, item_price, description, quantity) values ('Iwatch', '200.00', 'Smart watch', 50);
-insert into items (item_name, item_price, description, quantity) values ('Suavage', '26.20', 'Summer masculine perfume', 1);
-insert into items (item_name, item_price, description, quantity) values ('Air max S10', '115.00', 'Feel the pump', 7);
-insert into items (item_name, item_price, description, quantity) values ('Nike cap', '20.00', 'Retro snapback', 8);
-insert into items (item_name, item_price, description, quantity) values ('MacBook Air', '1221.99', 'Expensive laptop with not much specs', 4);
-insert into items (item_name, item_price, description, quantity) values ('Guinness', '8.00', 'Small stout', 38);
-insert into items (item_name, item_price, description, quantity) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', 24);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Tesco Water', '2.50', 'Clean and clear', 34);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Coke', '3.50', 'Soft Drink', 23);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Heineken', '4.50', 'Champions League Drink', 3);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Nestle Milo', '5.00', '900g pack', 12);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Cadbury Bournvita', '5.70', '950g pack', 35);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Samsung S10', '85.00', '4G Smart Phone', 22);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Iphone XS', '123.00', 'Super Phone', 15);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Dell Inspiron', '1450.50', 'Gaming Laptop', 42);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Emperio Armani', '38.00', 'Clean and Classy Suit for the elites', 44);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Iwatch', '200.00', 'Smart watch', 50);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Suavage', '26.20', 'Summer masculine perfume', 1);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Air max S10', '115.00', 'Feel the pump', 7);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Nike cap', '20.00', 'Retro snapback', 8);
+insert into items (item_name, item_price, item_description, item_quantity) values ('MacBook Air', '1221.99', 'Expensive laptop with not much specs', 4);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Guinness', '8.00', 'Small stout', 38);
+insert into items (item_name, item_price, item_description, item_quantity) values ('Aviator', '125.00', 'Quality aviator watches... just take a look', 24);
 

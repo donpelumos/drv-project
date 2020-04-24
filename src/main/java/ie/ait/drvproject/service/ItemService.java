@@ -1,7 +1,6 @@
 package ie.ait.drvproject.service;
 
 import ie.ait.drvproject.dao.Item;
-import ie.ait.drvproject.dao.User;
 import ie.ait.drvproject.model.classes.CustomPageableResponse;
 import ie.ait.drvproject.model.classes.ItemResponse;
 import ie.ait.drvproject.repository.ItemRepository;
@@ -47,7 +46,7 @@ public class ItemService {
         }
         Page<Item> foundItemsPage = null;
         if(pageable.getSort().toString().contains("description")){
-            foundItemsPage = itemRepository.findAllByDescriptionOrDescriptionContains(searchPhrase.toLowerCase(),
+            foundItemsPage = itemRepository.findAllByItemDescriptionOrItemDescriptionContains(searchPhrase.toLowerCase(),
                     searchPhrase.toLowerCase(), pageable);
         }
         else{
@@ -63,7 +62,7 @@ public class ItemService {
     private ItemResponse mapItemToItemResponse(Item item){
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setItemId(item.getItemId());
-        itemResponse.setItemDescription(item.getDescription());
+        itemResponse.setItemDescription(item.getItemDescription());
         itemResponse.setItemName(item.getItemName());
         itemResponse.setItemPrice(item.getItemPrice());
         return itemResponse;
