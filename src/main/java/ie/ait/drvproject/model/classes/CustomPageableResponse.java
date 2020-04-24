@@ -1,5 +1,7 @@
 package ie.ait.drvproject.model.classes;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.Page;
@@ -11,15 +13,25 @@ import java.util.List;
  */
 @Getter
 @Setter
+@ApiModel(description = "Custom pageable response class that extracts information from the pageable and add custom information about the search.")
 public class CustomPageableResponse<T, U> {
+    @ApiModelProperty(notes = "The sort from the pageable.")
     private String sort;
+    @ApiModelProperty(notes = "Total number of elements across all pages.")
     private int totalNumberOfElements;
+    @ApiModelProperty(notes = "Size of the maximum number of elements per page.")
     private int requestedCurrentPageSize;
+    @ApiModelProperty(notes = "Actual number of elements in the current paage.")
     private int actualCurrentPageSize;
+    @ApiModelProperty(notes = "Current page number")
     private int currentPage;
+    @ApiModelProperty(notes = "List of content in current page.")
     private List<U> content;
+    @ApiModelProperty(notes = "Boolean that returns true is current page is the first page or false if otherwise.")
     private boolean isFirstPage;
+    @ApiModelProperty(notes = "Boolean that returns true is current page is the last page or false if otherwise.")
     private boolean isLastPage;
+    @ApiModelProperty(notes = "Total number of pages available")
     private int totalNumberOfPages;
 
     public CustomPageableResponse(){

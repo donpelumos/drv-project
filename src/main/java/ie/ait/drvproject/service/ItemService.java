@@ -58,7 +58,6 @@ public class ItemService {
         return new CustomPageableResponse<>(foundItemsPage, itemResponses);
     }
 
-
     private ItemResponse mapItemToItemResponse(Item item){
         ItemResponse itemResponse = new ItemResponse();
         itemResponse.setItemId(item.getItemId());
