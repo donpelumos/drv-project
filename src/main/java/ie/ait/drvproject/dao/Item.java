@@ -28,7 +28,7 @@ public class Item {
     @NotNull(message = "Item name cannot be null")
     private String itemName;
     @Min(value=2, message = "The minimum item price is 2.00 Euros.")
-    @Max(value=500, message = "The maximum item price is 500.00 Euros.")
+    @Max(value=1000, message = "The maximum item price is 1000.00 Euros.")
     @ApiModelProperty(notes = "Price of the item. Should be a minimum of 2.00.")
     @NotNull(message = "Item price cannot be null")
     private Double itemPrice;
