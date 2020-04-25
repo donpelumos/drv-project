@@ -51,7 +51,7 @@ insert into items (item_name, item_price, item_description, item_quantity) value
 -- populate review table
 -- -----------------------------------------------------
 insert into reviews(review_text, review_date, user_id, item_id) values('I really enjoyed it, great beer.','2020-04-24 12:33:22',3,3);
-insert into reviews(review_text, review_date, user_id, item_id) values('It is bitter bu definitely not as much as it is exaggerated. Has a refreshing feel.','2020-04-15 10:22:32',6,3);
+insert into reviews(review_text, review_date, user_id, item_id) values('It is bitter but definitely not as much as it is exaggerated. Has a refreshing feel.','2020-04-15 10:22:32',6,3);
 insert into reviews(review_text, review_date, user_id, item_id) values('Cooked it and it came out perfect. per-boiling it is also a nice option.','2020-03-30 14:30:29',12,15);
 insert into reviews(review_text, review_date, user_id, item_id) values('Very fine grains which do not stick together when cooked. .','2020-02-02 18:54:22',1,15);
 insert into reviews(review_text, review_date, user_id, item_id) values('Best rice I have eaten in a very long time.','2020-02-13 14:20:22',3,15);
