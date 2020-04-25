@@ -18,10 +18,10 @@ public class Email {
     private Integer emailId;
     private String title;
     private String body;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;
 }
